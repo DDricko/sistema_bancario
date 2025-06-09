@@ -14,16 +14,21 @@ menu = """
 
 => """
 
+def depositar(saldo, extrato, valor):
+    if valor > 0:
+        saldo += valor
+        extrato += f"{datetime.now().strftime('%d/%m/%Y %H:%M:%S')} - Depósito: R$ {valor:.2f}\n"
+        return saldo, extrato
+    else:
+        print("Operação falhou! O valor informado é inválido.")
+        return saldo, extrato
+
 while True:
     opcao = input(menu)
 
     if opcao == "d":
         valor = float(input("Informe o valor do depósito: "))
-        if valor > 0:
-          saldo += valor
-          extrato += f"{datetime.now().strftime('%d/%m/%Y %H:%M:%S')} - Depósito: R$ {valor:.2f}\n"
-        else:
-          print("Operação falhou! O valor informado é inválido.")
+        saldo, extrato = depositar(saldo, extrato, valor)
 
     elif opcao == "s":
         valor = float(input("Informe o valor do saque: "))
