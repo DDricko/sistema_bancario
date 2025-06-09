@@ -41,6 +41,7 @@ while True:
         elif valor > 0:
             saldo -= valor
             extrato += f"{datetime.now().strftime('%d/%m/%Y %H:%M:%S')} - Saque: R$ {valor:.2f}\n"
+
             numero_saques += 1
         else:
             print("Operação falhou! O valor informado é inválido.")
