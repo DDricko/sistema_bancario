@@ -1,18 +1,19 @@
 from datetime import datetime
 
-saldo = 0
-limite = 500
-extrato = ""
-numero_saques = 0
-LIMITE_SAQUES = 3
 
-menu = """
-[d] - Depositar
-[s] - Sacar
-[e] - Extrato
-[q] - Sair
 
-=> """
+
+def exibir_menu():
+    menu = """
+    [d] - Depositar
+    [s] - Sacar
+    [e] - Extrato
+    [q] - Sair
+
+    => """
+
+    opcao = input(menu)
+    return opcao
 
 def depositar(saldo, extrato, valor):
     if valor > 0:
@@ -53,20 +54,28 @@ def exibir_extrato(saldo, extrato, LIMITE_SAQUES, numero_saques):
     print(f"Você ainda pode realizar {LIMITE_SAQUES - numero_saques} saque(s) hoje.")
     print("==========================================")
 
-while True:
-    opcao = input(menu)
+def main():
+    saldo = 0
+    limite = 500
+    extrato = ""
+    numero_saques = 0
+    LIMITE_SAQUES = 3
 
-    if opcao == "d":
-        valor = float(input("Informe o valor do depósito: "))
-        saldo, extrato = depositar(saldo, extrato, valor)
+    while True:
+        opcao = exibir_menu()
 
-    elif opcao == "s":
-        valor = float(input("Informe o valor do saque: "))
-        saldo, extrato, numero_saques = sacar(valor, saldo, extrato, numero_saques, limite, LIMITE_SAQUES)
+        if opcao == "d":
+            valor = float(input("Informe o valor do depósito: "))
+            saldo, extrato = depositar(saldo, extrato, valor)
 
-    elif opcao == "e":
-        exibir_extrato(saldo, extrato, LIMITE_SAQUES, numero_saques)
+        elif opcao == "s":
+            valor = float(input("Informe o valor do saque: "))
+            saldo, extrato, numero_saques = sacar(valor, saldo, extrato, numero_saques, limite, LIMITE_SAQUES)
 
-    elif opcao == "q":
-        print("Programa encerrado. Até mais!")
-        break
+        elif opcao == "e":
+            exibir_extrato(saldo, extrato, LIMITE_SAQUES, numero_saques)
+
+        elif opcao == "q":
+            print("Programa encerrado. Até mais!")
+            break
+main()
