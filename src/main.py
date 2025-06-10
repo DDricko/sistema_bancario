@@ -1,5 +1,5 @@
-from src.models.conta import Conta
-from src.models.usuario import Usuario
+from models.conta import Conta
+from models.usuario import Usuario
 
 def exibir_menu():
     menu = """
@@ -46,3 +46,6 @@ def main():
         elif opcao == "q":
             print("Programa encerrado. Até mais!")
             break
+        
+if __name__ == "__main__":
+    main()
