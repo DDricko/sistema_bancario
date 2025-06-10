@@ -62,12 +62,18 @@ def main():
         opcao = exibir_menu()
 
         if opcao == "d":
-            valor = float(input("Informe o valor do depósito: "))
-            saldo, extrato = depositar(saldo, extrato, valor)
+            try:
+                valor = float(input("Informe o valor do depósito: "))
+                saldo, extrato = depositar(saldo, extrato, valor)
+            except ValueError:
+                print("O valor informado é inválido. Certifique-se de digitar um número válido.")
 
         elif opcao == "s":
-            valor = float(input("Informe o valor do saque: "))
-            saldo, extrato, numero_saques = sacar(valor, saldo, extrato, numero_saques, limite, LIMITE_SAQUES)
+            try:
+                valor = float(input("Informe o valor do saque: "))
+                saldo, extrato, numero_saques = sacar(valor, saldo, extrato, numero_saques, limite, LIMITE_SAQUES)
+            except ValueError:
+                print("O valor informado é inválido. Certifique-se de digitar um número válido.")
 
         elif opcao == "e":
             exibir_extrato(saldo, extrato, LIMITE_SAQUES, numero_saques)
