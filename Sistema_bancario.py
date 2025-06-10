@@ -1,8 +1,5 @@
 from datetime import datetime
 
-
-
-
 def exibir_menu():
     menu = """
     [d] - Depositar
