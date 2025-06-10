@@ -51,6 +51,26 @@ def exibir_extrato(saldo, extrato, LIMITE_SAQUES, numero_saques):
     print(f"Você ainda pode realizar {LIMITE_SAQUES - numero_saques} saque(s) hoje.")
     print("==========================================")    
 
+def autenticar_usuario():
+    LIMITE_TENTATIVAS = 3
+    tentativas = 0
+    usuario = ""
+    senha = ""
+
+    while tentativas < LIMITE_TENTATIVAS:
+            usuario = input("Informe o seu usuario: ")
+            senha = input("Informe a sua senha: ")
+
+            if usuario == "teste01" and senha == "123asd":
+                return True
+            else:
+                tentativas += 1
+                print("Usuario ou senha inválidos")
+
+    if tentativas == LIMITE_TENTATIVAS:
+        print("Você excedeu o limite maximo de tentativas")
+        return False
+
 def main():
     saldo = 0
     limite = 500
@@ -58,26 +78,10 @@ def main():
     numero_saques = 0
     LIMITE_SAQUES = 3
 
-    LIMITE_TENTATIVAS = 3
-    tentativas = 0
-    usuario = ""
-    senha = ""
+    usuario_autenticado = autenticar_usuario()
 
     while True:
-        while tentativas < LIMITE_TENTATIVAS:
-            usuario = input("Informe o seu usuario: ")
-            senha = input("Informe a sua senha: ")
-
-            if usuario == "teste01" and senha == "123asd":
-                opcao = exibir_menu()
-            else:
-                tentativas += 1
-                print("Usuario ou senha inválidos")
-                continue
-
-        if tentativas == LIMITE_TENTATIVAS:
-            print("Você excedeu o limite maximo de tentativas")
-            opcao = "q"
+        opcao = exibir_menu() if usuario_autenticado else "q"
 
         if opcao == "d":
             try:
