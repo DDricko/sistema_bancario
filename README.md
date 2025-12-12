@@ -14,10 +14,10 @@ Fornecer uma aplicação de linha de comando para gerenciar operações bancári
 
 ### Como o código está organizado?
 O projeto possui duas implementações:
-1. **Sistema_bancario.py** - Versão monolítica com todas as funcionalidades em um único arquivo
+1. **Sistema_bancario.py** - Versão monolítica com todas as funcionalidades em um único arquivo (usa autenticação com usuário/senha simples: teste01/123asd)
 2. **src/** - Versão modular organizada em:
-   - `models/` - Classes de domínio (Conta, Usuario)
-   - `services/` - Serviços auxiliares (autenticacao)
+   - `models/` - Classes de domínio (Conta, Usuario - onde a autenticação está implementada)
+   - `services/` - Serviços auxiliares (atualmente vazio, reservado para expansões futuras)
    - `main.py` - Ponto de entrada da aplicação modular
 
 ### Qual versão devo usar?
@@ -42,9 +42,12 @@ A versão modular em `src/` é a mais atual e recomendada, pois segue melhores p
 - **Limite de tentativas de autenticação**: 3
 
 ### Como funciona a autenticação?
-O sistema utiliza CPF e senha para autenticação. Os usuários predefinidos são:
+**Versão modular (src/)**: Utiliza CPF e senha para autenticação. Os usuários predefinidos são:
 - CPF: 12345678900, Nome: Rodrigo, Senha: 123asd
 - CPF: 11122233344, Nome: Maria, Senha: senha123
+
+**Versão monolítica (Sistema_bancario.py)**: Utiliza usuário e senha simples:
+- Usuario: teste01, Senha: 123asd
 
 ## 🚀 Perguntas sobre Uso
 
@@ -75,7 +78,16 @@ O projeto utiliza apenas bibliotecas padrão do Python:
 - `datetime` - Para registro de data/hora das transações
 
 ### Como posso adicionar novos usuários?
-Atualmente, os usuários são codificados diretamente no método `autenticar_usuario()` da classe `Usuario`. Para adicionar um novo usuário, adicione uma nova instância na lista `usuarios` em `src/models/usuario.py`.
+**Versão modular**: Os usuários são codificados diretamente no método estático `autenticar_usuario()` da classe `Usuario`. Para adicionar um novo usuário, adicione uma nova instância de `Usuario` na lista `usuarios` (linhas 9-12 em `src/models/usuario.py`).
+
+Exemplo:
+```python
+usuarios = [
+    Usuario("12345678900", "Rodrigo", "123asd"),
+    Usuario("11122233344", "Maria", "senha123"),
+    Usuario("99988877766", "João", "minhasenha"),  # Novo usuário
+]
+```
 
 ### Como posso adicionar novas funcionalidades?
 1. **Novas operações bancárias**: Adicione métodos na classe `Conta`
