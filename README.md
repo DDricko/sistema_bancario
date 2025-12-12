@@ -17,7 +17,7 @@ O projeto possui duas implementações:
 1. **Sistema_bancario.py** - Versão monolítica com todas as funcionalidades em um único arquivo (usa autenticação com usuário/senha simples: teste01/123asd)
 2. **src/** - Versão modular organizada em:
    - `models/` - Classes de domínio (Conta, Usuario - onde a autenticação está implementada)
-   - `services/` - Serviços auxiliares (atualmente vazio, reservado para expansões futuras)
+   - `services/` - Serviços auxiliares (contém autenticacao.py vazio, reservado para expansões futuras)
    - `main.py` - Ponto de entrada da aplicação modular
 
 ### Qual versão devo usar?
@@ -78,7 +78,7 @@ O projeto utiliza apenas bibliotecas padrão do Python:
 - `datetime` - Para registro de data/hora das transações
 
 ### Como posso adicionar novos usuários?
-**Versão modular**: Os usuários são codificados diretamente no método estático `autenticar_usuario()` da classe `Usuario`. Para adicionar um novo usuário, adicione uma nova instância de `Usuario` na lista `usuarios` (linhas 9-12 em `src/models/usuario.py`).
+**Versão modular**: Os usuários são codificados diretamente no método estático `autenticar_usuario()` da classe `Usuario`. Para adicionar um novo usuário, adicione uma nova instância de `Usuario` na lista `usuarios` (linhas 9-11 em `src/models/usuario.py`).
 
 Exemplo:
 ```python
